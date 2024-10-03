@@ -18,18 +18,18 @@ fi
 # clone orxngc/dots in $HOME
 cd $HOME || exit
 echo "Cloning repository..."
-git clone https://github.com/orxngc/dots
+git clone https://github.com/omsenjalia/dotfiles
 echo "orxngc/dots cloned successfully."
 
 # Ask the user for their username & hostname
 read -p "Enter your username: " username
 sed -i 's/\(username = "\)[^"]*\(".*\)/\1'$username'\2/' flake.nix
 read -p "Enter your hostname: " hostname
-cp -r $HOME/dots/hosts/anacreon "$HOME/dots/hosts/$hostname"
+cp -r $HOME/dotfiles/hosts/default "$HOME/dotfiles/hosts/$hostname"
 sed -i 's/\(host = "\)[^"]*\(".*\)/\1'$hostname'\2/' flake.nix
 
 # Copy the hyprpanel config
-cp $HOME/dots/files/hyprpanel.json $HOME/.cache/ags/hyprpanel/options.json
+cp $HOME/dotfiles/files/hyprpanel.json $HOME/.cache/ags/hyprpanel/options.json
 
 # Prompt the user for wallpaper repositories
 echo "Choose wallpaper repositories to install:"
@@ -46,17 +46,17 @@ for i in "${ADDR[@]}"; do
     case $i in
         1)
             git clone https://github.com/orxngc/walls
-            sed -i "s/walls/walls/g" "$HOME/dots/scripts/walls.nix"
+            sed -i "s/walls/walls/g" "$HOME/dotfiles/scripts/walls.nix"
             ;;
         2)
             git clone https://github.com/orxngc/walls-catppuccin-mocha
-            sed -i "s/walls/walls-catppuccin-mocha/g" "$HOME/dots/scripts/walls.nix"
+            sed -i "s/walls/walls-catppuccin-mocha/g" "$HOME/dotfiles/scripts/walls.nix"
             ;;
         3)
             read -p "Enter the URL of the wallpaper repository: " repo_url
             repo_name=$(basename "$repo_url" .git)
             git clone "$repo_url"
-            sed -i "s/walls/$repo_name/g" "$HOME/dots/scripts/walls.nix"
+            sed -i "s/walls/$repo_name/g" "$HOME/dotfiles/scripts/walls.nix"
             ;;
         4)
             echo "Warning: No wallpaper repository selected. Wallpapers will be broken unless you put images into $username/media/walls."
@@ -69,7 +69,7 @@ done
 
 # Generate hardware config
 echo "Generating hardware configuration..."
-nixos-generate-config --show-hardware-config > "$HOME/dots/hosts/$hostname/hardware.nix"
+nixos-generate-config --show-hardware-config > "$HOME/dotfiles/hosts/$hostname/hardware.nix"
 echo "Hardware configuration successfully generated."
 
 # Set NIX_CONFIG
@@ -79,13 +79,13 @@ echo "Enabled flakes."
 # Ask for git username and email, and replace them in variables.nix
 read -p "Enter your git username: " git_username
 read -p "Enter your git email: " git_email
-sed -i "s/gitUsername = \"orxngc\";/gitUsername = \"$git_username\";/g" "$HOME/dots/hm-modules/core/boilerplate.nix"
-sed -i "s/gitEmail = \"orangc@proton.me\";/gitEmail = \"$git_email\";/g" "$HOME/dots/hm-modules/core/boilerplate.nix"
+sed -i "s/gitUsername = \"omsenjalia\";/gitUsername = \"$git_username\";/g" "$HOME/dotfiles/hm-modules/core/boilerplate.nix"
+sed -i "s/gitEmail = \"omsenjalia@gmail.com\";/gitEmail = \"$git_email\";/g" "$HOME/dotfiles/hm-modules/core/boilerplate.nix"
 
 # Rebuild the system with the specified hostname
 echo "Rebuilding system..."
 sudo nixos-rebuild boot --flake ".#$hostname"
-home-manager switch $HOME/dots
+home-manager switch $HOME/dotfiles
 echo "System successfully rebuilt."
 echo " IMPORTANT: reboot your system now for the changes to take effect."
-echo "Have fun with my dots! —orangc"
+echo "Have fun with my dots! —orangc and om"

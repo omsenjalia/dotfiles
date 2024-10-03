@@ -21,7 +21,7 @@
       discord.enable = true;
       steam.enable = false;
       hyprland.enable = true;
-      minecraft.enable = true;
+      minecraft.enable = false;
       appimages.enable = false;
     };
     styles = {

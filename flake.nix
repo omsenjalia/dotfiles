@@ -28,7 +28,7 @@
     ...
   }: let
     system = "x86_64-linux";
-    host = "anacreon";
+    host = "default";
     username = "orangc";
 
     pkgs = import nixpkgs {

@@ -25,7 +25,7 @@ echo "orxngc/dots cloned successfully."
 read -p "Enter your username: " username
 sed -i 's/\(username = "\)[^"]*\(".*\)/\1'$username'\2/' flake.nix
 read -p "Enter your hostname: " hostname
-cp -r $HOME/dots/hosts/anacreon "$HOME/dots/hosts/$hostname"
+cp -r $HOME/dots/hosts/default "$HOME/dots/hosts/$hostname"
 sed -i 's/\(host = "\)[^"]*\(".*\)/\1'$hostname'\2/' flake.nix
 
 # Copy the hyprpanel config

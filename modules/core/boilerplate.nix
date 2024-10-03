@@ -31,7 +31,7 @@
       useTmpfs = false;
       tmpfsSize = "30%";
     };
-    plymouth.enable = true;
+    plymouth.enable = false;
   };
 
   # Select internationalisation properties.

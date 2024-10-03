@@ -9,6 +9,10 @@
     lxqt.lxqt-policykit
     wl-clipboard
     libnotify
+    vlc # i
+    git # i
+    obs-studio # i
+    flameshot # i
     yad
     grim
     slurp
@@ -53,20 +57,20 @@
     # big gui programs
     # file-roller # BIG 1.1GB
     # transmission_4-gtk # bittorent client
-    gwenview # image viewer BIG 1.3GB
+    # gwenview # image viewer BIG 1.3GB
     # calibre # ebooks BIG 2.1GB
-    obsidian # BIG 1.8GB
-    pinta # half a GB
-    otpclient # half a GB
+    # obsidian # BIG 1.8GB
+    # pinta # half a GB
+    # otpclient # half a GB
 
     # fun stuffs
-    cmatrix
-    lolcat
-    tty-clock
-    kittysay
-    nitch
-    uwuify
-    owofetch
-    ipfetch
+    # cmatrix
+    # lolcat
+    # tty-clock
+    # kittysay
+    # nitch
+    # uwuify
+    # owofetch
+    # ipfetch
   ];
 }

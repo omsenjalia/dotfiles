@@ -13,6 +13,8 @@
     git # i
     obs-studio # i
     flameshot # i
+    kitty # i
+    vscodium # i
     yad
     grim
     slurp

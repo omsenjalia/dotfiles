@@ -46,11 +46,11 @@
   swapDevices = [
     {
       device = "/swapfile";
-      size = 16 * 1024; # 16GB
+      size = 4 * 1024; # 4GB
     }
   ];
 
-  time.timeZone = "Asia/Riyadh";
+  time.timeZone = "Asia/Kolkata";
   hardware.logitech.wireless.enable = true;
 
   programs = {

@@ -36,8 +36,8 @@ in {
       };
       polarity = "dark";
       cursor = {
-        package = pkgs.oreo-cursors-plus;
-        name = "oreo_spark_orange_cursors";
+        package = pkgs.bibata-cursors;
+        name = "bibata-cursors";
         size = 24;
       };
       fonts = {

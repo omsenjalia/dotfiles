@@ -14,7 +14,11 @@
     obs-studio # i
     flameshot # i
     kitty # i
-    vscodium # i
+    vscodium # 
+    firefox # i
+    bibata # i
+    ags # i
+    rofi # i
     yad
     grim
     slurp

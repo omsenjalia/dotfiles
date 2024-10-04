@@ -28,8 +28,8 @@
     ...
   }: let
     system = "x86_64-linux";
-    host = "default";
-    username = "orangc";
+    host = "thinkpad";
+    username = "om";
 
     pkgs = import nixpkgs {
       inherit system;

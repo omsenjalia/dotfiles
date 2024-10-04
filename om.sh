@@ -87,6 +87,8 @@ echo "Rebuilding system..."
 cd $HOME/dots
 git add .
 git commit -m "Git sync"
+nix flake update
+nix flake show ".#$hostname"
 sudo nixos-rebuild boot --flake ".#$hostname" --show-trace
 home-manager switch --flake /home/om/dots
 echo "System successfully rebuilt."

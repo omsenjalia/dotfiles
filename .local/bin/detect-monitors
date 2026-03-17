@@ -43,16 +43,16 @@ else
     done
 fi
 
-# ---- Assign $main and $secundary --------------------------------------------
+# ---- Assign $main and $secondary --------------------------------------------
 
 MAIN=""
-SECUNDARY=""
+SECONDARY=""
 
 if [[ ${#MONITORS[@]} -ge 1 ]]; then
     MAIN="${MONITORS[0]}"
 fi
 if [[ ${#MONITORS[@]} -ge 2 ]]; then
-    SECUNDARY="${MONITORS[1]}"
+    SECONDARY="${MONITORS[1]}"
 fi
 
 if [[ -z "$MAIN" ]]; then
@@ -66,15 +66,15 @@ cat > "$OUT_FILE" <<EOF
 # Re-run 'detect-monitors' to regenerate.
 # Detected ${#MONITORS[@]} monitor(s): ${MONITORS[*]:-none}
 \$main=${MAIN}
-\$secundary=${SECUNDARY}
+\$secondary=${SECONDARY}
 EOF
 
 success "Wrote ${OUT_FILE}"
 if [[ -n "$MAIN" ]]; then
     info "  \$main      = ${MAIN}"
 fi
-if [[ -n "$SECUNDARY" ]]; then
-    info "  \$secundary = ${SECUNDARY}"
+if [[ -n "$SECONDARY" ]]; then
+    info "  \$secondary = ${SECONDARY}"
 fi
 if [[ ${#MONITORS[@]} -gt 2 ]]; then
     warn "  ${#MONITORS[@]} monitors detected but only 2 are configured."

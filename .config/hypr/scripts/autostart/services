@@ -27,3 +27,6 @@ easyeffects --gapplication-service &
 
 # Vicinae
 vicinae server &
+
+# Pyprland
+pyprland &

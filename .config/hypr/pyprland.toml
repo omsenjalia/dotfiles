@@ -8,7 +8,7 @@ unfocus = "hide"
 lazy = true
 
 [scratchpads.bluetooth]
-command = "ghostty --class=com.ghostty-volume -e bluetui"
+command = "ghostty --class=com.ghostty-bluetooth -e bluetui"
 position = "1% 8%"
 unfocus = "hide"
 lazy = true

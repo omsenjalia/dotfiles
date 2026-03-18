@@ -3,7 +3,6 @@ set -euo pipefail
 
 swww-daemon --format argb &
 udiskie &
-waybar &
 swaync &
 hypridle &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &

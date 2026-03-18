@@ -1,7 +1,8 @@
-function lg --wraps=lazygit --description 'alias lg=lazygit'
-    if type -f lazygit &>/dev/null
-        lazygit $argv
-    else
-        missing_package lazygit
+function lg --description 'lazygit with post-quit cd'
+    set -x LAZYGIT_NEW_DIR_FILE ~/.lazygit/newdir
+    command lazygit $argv
+    if test -f $LAZYGIT_NEW_DIR_FILE
+        cd (cat $LAZYGIT_NEW_DIR_FILE)
+        rm -f $LAZYGIT_NEW_DIR_FILE
     end
 end

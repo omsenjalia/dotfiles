@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
 floating=$(hyprctl activewindow -j | jq '.floating')
 window=$(hyprctl activewindow -j | jq -r '.initialClass')

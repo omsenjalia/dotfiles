@@ -82,3 +82,6 @@ swayosd-git
 tmux
 atuin
 easyeffects
+
+# Quickshell (end-4 dock)
+quickshell-git  # AUR — build from source, ~5 min

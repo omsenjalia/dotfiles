@@ -10,6 +10,9 @@ active_class=$(echo "$active_class" | tr -d \")
 grep 'workspace' ~/.config/hypr/theme/rules.conf | while IFS= read -r line; do
 	workspace_value=$(echo "$line" | sed -n -e 's/^.*workspace \([0-9]*\)[ ,].*$/\1/p')
 	class_value=$(echo "$line" | sed -n -e 's/^.*class:\s*\(.*\)$/\1/p')
+	if [ -z "$class_value" ]; then
+		class_value=$(echo "$line" | sed -n -e 's/^.*class:\(.*\)$/\1/p')
+	fi
 	regex=$class_value
 
 	if [ -n "$workspace_value" ] && [ -n "$class_value" ]; then

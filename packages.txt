@@ -13,7 +13,7 @@ xdg-desktop-portal-hyprland
 waybar
 wttrbar
 waybar-updates
-vicinae-binsudo pacman -R nvidia-open-dkms
+vicinae-bin
 swaync
 wl-clipboard
 brightnessctl

@@ -8,14 +8,12 @@ active_class=$(hyprctl -j activewindow | jq -r '.class')
 # Read the file and extract workspace rules
 grep '^windowrule = workspace' ~/.config/hypr/theme/rules.conf | while IFS= read -r line; do
 	workspace_value=$(echo "$line" | sed -n 's/^windowrule = workspace \([0-9]*\).*/\1/p')
-	class_value=$(echo "$line" | sed -n 's/^.*class:\(.*\)$/\1/p')
+	class_value=$(echo "$line" | sed -n 's/^.*match:class \(.*\)$/\1/p')
 
 	if [ -n "$workspace_value" ] && [ -n "$class_value" ]; then
-		# Compare the retrieved value with the active class of the window
 		if echo "$active_class" | grep -qE "$class_value"; then
 			hyprctl dispatch movetoworkspace "$workspace_value"
 		fi
 	fi
 done
 exit 0
-

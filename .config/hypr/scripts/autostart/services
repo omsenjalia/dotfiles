@@ -1,32 +1,17 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
-# Wallpaper engine
 swww-daemon --format argb &
-
-# Automounter for removable media
 udiskie &
-
-# Bar
 waybar &
-
-# Notification Daemon
 swaync &
-
-# Idle daemon to screen lock
 hypridle &
-
-# Polkit authentication
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-
-# Audio
+swayosd-server &
 easyeffects --gapplication-service &
-
-# Screen sharing and portals
 "$HOME"/.config/hypr/scripts/portal &
-# xwaylandvideobridge & # Off when using Vesktop instead of Discord
-
-# Vicinae
 vicinae server &
-
-# Pyprland
+# Quickshell (dock only — bar is disabled in panelFamilies/IllogicalImpulseFamily.qml)
+qs -c ii &
 pypr &
+wl-paste --watch cliphist store &

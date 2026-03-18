@@ -1,0 +1,15 @@
+{
+  "dock": {
+    "enable": true,
+    "pinnedOnStartup": true,
+    "height": 60,
+    "hoverToReveal": true,
+    "hoverRegionHeight": 2,
+    "monochromeIcons": false
+  },
+  "bar": {
+    "autoHide": {
+      "enable": false
+    }
+  }
+}

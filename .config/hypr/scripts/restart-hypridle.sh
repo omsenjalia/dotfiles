@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Notifications
+source "$HOME/.config/ml4w/scripts/ml4w-notification-handler"
+
+killall hypridle
+sleep 1
+hypridle &
+
+notify_user --a "Hypridle" \
+        --s "Hypridle has been restarted." \
+        --m ""

@@ -1,7 +1,8 @@
 theme = Catppuccin Macchiato
 background-blur-radius = 20
+background-opacity = 0.95
 
-font-family = Maple Mono NF
+font-family = Berkeley Mono
 font-feature = +ss02
 font-feature = +ss03
 font-feature = +ss05
@@ -34,4 +35,5 @@ auto-update-channel = stable
 shell-integration-features = no-cursor
 copy-on-select = clipboard
 resize-overlay = never
-window-save-state = never
+window-save-state = always
+keybind = super+u=copy_url_to_clipboard

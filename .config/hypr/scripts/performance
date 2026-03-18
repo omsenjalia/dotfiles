@@ -1,4 +1,5 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
+set -euo pipefail
 
 HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==2{print $2}')
 

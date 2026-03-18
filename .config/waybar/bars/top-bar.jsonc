@@ -1,10 +1,13 @@
 {
+  "reload_style_on_change": true,
+  "layer": "top",
   "position": "top",
-  "height": 48,
-  "margin-top": 5,
-  "margin-left": 5,
-  "margin-bottom": 0,
-  "margin-right": 5,
+  "height": 46,
+  "margin-top": 6,
+  "margin-left": 10,
+  "margin-right": 10,
+  "spacing": 0,
+
   "include": [
     "~/.config/waybar/modules/custom-music.jsonc",
     "~/.config/waybar/modules/custom-notifications.jsonc",
@@ -12,13 +15,89 @@
     "~/.config/waybar/modules/hyprland-language.jsonc",
     "~/.config/waybar/modules/tray.jsonc",
     "~/.config/waybar/modules/network.jsonc",
+    "~/.config/waybar/modules/battery.jsonc",
+    "~/.config/waybar/modules/custom-weather.jsonc"
   ],
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/music"],
-  "modules-right": [
-    "tray",
-    "hyprland/language",
-    "network",
-    "custom/notifications",
+
+  "modules-left": [],
+  "modules-center": [
+    "group/pill-left",
+    "hyprland/workspaces",
+    "group/pill-center",
+    "group/pill-right"
   ],
+  "modules-right": [],
+
+  "group/pill-left": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/arch",
+      "custom/active-window"
+    ]
+  },
+
+  "group/pill-center": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/music",
+      "custom/separator#dot",
+      "custom/notifications"
+    ]
+  },
+
+  "group/pill-right": {
+    "orientation": "inherit",
+    "modules": [
+      "tray",
+      "custom/separator#dot",
+      "hyprland/language",
+      "custom/separator#dot",
+      "network",
+      "custom/separator#dot",
+      "custom/weather",
+      "custom/separator#dot",
+      "battery",
+      "custom/separator#dot",
+      "pulseaudio",
+      "custom/separator#dot",
+      "custom/clock"
+    ]
+  },
+
+  "custom/arch": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "custom/active-window": {
+    "exec": "~/.config/waybar/scripts/window.sh",
+    "return-type": "json",
+    "interval": 2,
+    "markup": true,
+    "tooltip": false
+  },
+
+  "custom/clock": {
+    "exec": "~/.config/waybar/scripts/clock.sh",
+    "interval": 1,
+    "return-type": "json",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "swayosd-client --output-volume mute-toggle",
+    "scroll-step": 5,
+    "tooltip-format": "{volume}%"
+  },
+
+  "custom/separator#dot": {
+    "format": "·",
+    "interval": "once",
+    "tooltip": false
+  }
 }

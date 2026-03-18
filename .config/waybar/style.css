@@ -1,177 +1,185 @@
 @import "./colors.css";
 
 * {
-  font-family: "Berkeley Mono";
-  font-size: 15px;
-  border-radius: 0;
-  box-shadow: none;
+  border: none;
+  border-radius: 1;
+  min-height: 0;
+  font-family: 'Berkeley Mono';
+  font-size: 12px;
+}
+
+.modules-left {
+  margin-left: 8px;
+}
+
+.modules-right {
+  margin-right: 8px;
 }
 
 window#waybar {
-  background: @background;
+  background-color: transparent;
+  transition-property: background-color;
+  transition-duration: .5s;
+  border-radius: 32px;
 }
 
-/* General Settings */
-#battery,
-#cava,
-#custom-cava,
-#custom-clipboard,
-#custom-notifications,
-#custom-arch,
-#custom-gpu-usage,
-#custom-updates,
-#mode,
-#cpu,
-#memory,
-#temperature,
-#custom-music,
-#custom-fans,
-#clock,
-#idle_inhibitor,
-#bluetooth,
-#custom-wf-recorder,
-#pulseaudio,
-#backlight,
-#network,
-#tray,
-#custom-power-menu,
-#language,
-#window,
-#custom-weather,
-#custom-weather.severe,
-#custom-weather.sunnyDay,
-#custom-weather.clearNight,
-#custom-weather.cloudyFoggyDay,
-#custom-weather.cloudyFoggyNight,
-#custom-weather.rainyDay,
-#custom-weather.rainyNight,
-#custom-weather.showyIcyDay,
-#custom-weather.snowyIcyNight,
-#custom-weather.default {
-  padding: 5px 0;
+window#waybar.empty #window {
+  background: transparent;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  color: transparent;
+  padding: 0;
+  margin: 0;
+}
+#waybar.empty .modules-center {
+  opacity: 0;
+}
+
+#workspaces {
+    padding: 0px 10px;
+    margin: 3.5 3.5px;
+    border-radius: 11px;
+    background-color: @background;
 }
 
 #workspaces button {
   color: @foreground;
-  padding: 0;
+  padding: 0 3px;
+  margin: 0 0.5px;
+  min-width: 9px;
 }
+
+#workspaces button.empty {
+  color: @foreground;
+  opacity: 0.5;
+}
+
 #workspaces button.active {
-  color: @green;
+  transition: all 50ms ease-out;
+  border-top: 3px solid @foreground;
+  margin-bottom: 2px;
+  color: @foreground;
+  opacity: 1;
 }
 
-#custom-notifications {
-  color: @yellow;
-  margin-bottom: 10px;
+#workspaces button:hover {
+  background-color: transparent;
 }
 
-#clock {
-  color: @blue;
+#workspaces button.empty:hover {
+  background: transparent;
+  opacity: 1;
 }
 
-#language {
-  color: @blue;
+#battery,
+#pulseaudio,
+#custom-screenrecording-indicator,
+#custom-update {
+  min-width: 12px;
+  margin: 0 7.5px;
+}
+
+#tray {
+  background:alpha(@foreground, 0.0);
+  border-radius: 16px;
+  padding: 0px 5px;
+  margin: 3.5 2px;
+  margin-right: 4px;
 }
 
 #pulseaudio {
-  color: @pink;
+  margin-right: 5px;
 }
 
-#pulseaudio.muted {
-  background-color: @red;
-  color: @mantle;
+#bluetooth {
+  margin-right: 12px;
 }
 
-#pulseaudio.source-muted {
-  background-color: @peach;
-  color: @mantle;
+#network {
+  margin-right: 9px;
 }
 
-#backlight {
-  color: @blue;
+#custom-gamemode {
+  margin-right: 8px;
 }
 
-#battery {
-  color: @green;
-}
-
-#battery.charging,
-#battery.plugged {
-  background-color: @green;
-  color: @mantle;
-}
-
-#battery.critical:not(.charging) {
-  background-color: @red;
-  color: @mantle;
-  animation-name: blink;
-  animation-duration: 0.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
-
-#network.disabled {
-  color: @red;
-}
-#network.wifi {
-  color: @peach;
-}
-#network.ethernet {
-  color: @sky;
-}
-
-#submap {
-  color: @peach;
-}
-
-#mpris {
-  color: @yellow;
-}
-
-#privacy {
-  margin: 4px;
-  color: @yellow;
+#custom-idle-indicator,
+#custom-notification-silencing-indicator {
+  margin-right: 2px;
+  min-width: 15px;
 }
 
 tooltip {
   background: @background;
-  border: 1px solid @foreground;
+  border: 1px solid alpha(@foreground, 0.2);
+  border-radius: 12px;
 }
-tooltip * {
-  color: @foreground;
-  margin: 2px;
-  background: @background;
-}
-
-#pulseaudio-slider,
-#backlight-slider {
-  min-height: 80px;
+tooltip label {
+  color: white;
 }
 
-#pulseaudio-slider slider,
-#backlight-slider slider {
-  background: transparent;
+#custom-clock {
+  margin-left: 7px;
+  font-weight: 900;
+  font-size: 12px;
 }
 
-#pulseaudio-slider trough,
-#backlight-slider trough {
-  min-width: 8px;
+#custom-active_window {
+    padding: 2px 6px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 14px;
+    background: @background;
+    font-size: 12px;
 }
 
-#pulseaudio-slider highlight {
-  background: @blue;
-}
-#backlight-slider highlight {
-  background: @yellow;
+#custom-update {
+  font-size: 10px;
 }
 
-#custom-arch:hover,
-#cpu:hover,
-#network:hover,
-#bluetooth:hover,
-#pulseaudio:hover,
-#pulseaudio.microphone:hover,
-#pulseaudio.sink-muted:hover,
-#custom-powermenu:hover {
-  opacity: 0.5;
+#custom-screenrecording-indicator {
+  min-width: 12px;
+  margin-left: 8.75px;
+  font-size: 10px;
+}
+
+#custom-screenrecording-indicator.active {
+  color: red;
+}
+
+#custom-omarchy{
+  margin-left: 8px;
+  margin-right: 4px;
+}
+
+#cpu, #memory {
+    margin-left: 0px;
+    font-size: 18px;
+    padding: 3px 0px;
+}
+
+#group-right1,
+#group_right1,
+#right1 {
+    font-weight: 800;
+    background: @background;
+    padding: 0px 5px;
+    margin: 3.5 2px;
+}
+
+#group-center4,
+#group_center4,
+#center4,
+#group-center3,
+#group_center3,
+#center3,
+#group-center2,
+#group_center2,
+#center2 {
+    font-weight: 800;
+    background: @background;
+    border-radius: 12px;
+    padding: 0px 5px;
+    margin: 3.5 2px;
 }

@@ -13,7 +13,7 @@ xdg-desktop-portal-hyprland
 waybar
 wttrbar
 waybar-updates
-vicinae-bin
+vicinae-binsudo pacman -R nvidia-open-dkms
 swaync
 wl-clipboard
 brightnessctl
@@ -73,8 +73,6 @@ ttf-nerd-fonts-symbols-mono
 ttf-nerd-fonts-symbols-common
 ttf-font-awesome
 noto-fonts-cjk
-ttf-ms-win11-auto
-
 # --- Extras (Terminal, Editor, OSD, etc.) ---
 ghostty
 neovim

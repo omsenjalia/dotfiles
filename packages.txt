@@ -11,6 +11,7 @@ hyprpicker
 swww
 xdg-desktop-portal-hyprland
 waybar
+wttrbar
 waybar-updates
 vicinae-bin
 swaync

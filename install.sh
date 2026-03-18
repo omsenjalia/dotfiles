@@ -29,6 +29,7 @@ PACKAGES_FILE="${SCRIPT_DIR}/packages.txt"
 DOTFILES_REPO="https://github.com/omsenjalia/dotfiles.git"
 DOTFILES_DIR="${HOME}/dotfiles"
 ICON_URL="https://github.com/ljmill/catppuccin-icons/releases/download/v0.2.0/Catppuccin-SE.tar.bz2"
+MARKER_FILE="${HOME}/.local/share/omsenjalia-dotfiles/installed"
 
 # --------------- Trap: print helpful message on unexpected exit ---------------
 
@@ -104,50 +105,56 @@ info "  → ${#PACKAGES[@]} packages to install (already-installed will be skipp
 yay -S --noconfirm --needed "${PACKAGES[@]}"
 success "All packages installed."
 
-# --------------- 5. GPU drivers (interactive choice) -------------------------
+# --------------- 5. GPU drivers (first install only) ------------------------
 
-echo ""
-echo -e "${BOLD}GPU Driver Installation${NC}"
-echo "  1) AMD    (open-source)"
-echo "  2) Nvidia (proprietary)"
-echo "  3) Intel  (open-source)"
-echo "  4) Skip   (drivers already installed)"
-echo ""
-read -rp "Select GPU driver [1-4]: " GPU_CHOICE
+if [[ -f "$MARKER_FILE" ]]; then
+    info "Update mode — skipping GPU driver prompt (already configured on first install)."
+else
+    echo ""
+    echo -e "${BOLD}GPU Driver Installation${NC}"
+    echo "  1) AMD    (open-source)"
+    echo "  2) Nvidia (proprietary)"
+    echo "  3) Intel  (open-source)"
+    echo "  4) Skip   (drivers already installed)"
+    echo ""
+    read -rp "Select GPU driver [1-4]: " GPU_CHOICE
 
-case "${GPU_CHOICE}" in
-    1)
-        info "Installing AMD drivers…"
-        yay -S --noconfirm --needed \
-            xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon vulkan-tools \
-            opencl-clover-mesa lib32-opencl-clover-mesa mesa lib32-mesa \
-            vdpauinfo clinfo
-        success "AMD drivers installed."
-        ;;
-    2)
-        info "Installing Nvidia drivers…"
-        yay -S --noconfirm --needed \
-            nvidia nvidia-utils nvidia-settings opencl-nvidia lib32-nvidia-utils \
-            lib32-opencl-nvidia cuda vdpauinfo clinfo
-        success "Nvidia drivers installed."
-        ;;
-    3)
-        info "Installing Intel drivers…"
-        yay -S --noconfirm --needed \
-            xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-tools \
-            libva-intel-driver lib32-libva-intel-driver mesa lib32-mesa \
-            mesa-vdpau lib32-mesa-vdpau
-        success "Intel drivers installed."
-        ;;
-    4|*)
-        warn "Skipping GPU driver installation."
-        ;;
-esac
+    case "${GPU_CHOICE}" in
+        1)
+            info "Installing AMD drivers…"
+            yay -S --noconfirm --needed \
+                xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon vulkan-tools \
+                opencl-clover-mesa lib32-opencl-clover-mesa mesa lib32-mesa \
+                vdpauinfo clinfo
+            success "AMD drivers installed."
+            ;;
+        2)
+            info "Installing Nvidia drivers…"
+            yay -S --noconfirm --needed \
+                nvidia nvidia-utils nvidia-settings opencl-nvidia lib32-nvidia-utils \
+                lib32-opencl-nvidia cuda vdpauinfo clinfo
+            success "Nvidia drivers installed."
+            ;;
+        3)
+            info "Installing Intel drivers…"
+            yay -S --noconfirm --needed \
+                xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-tools \
+                libva-intel-driver lib32-libva-intel-driver mesa lib32-mesa \
+                mesa-vdpau lib32-mesa-vdpau
+            success "Intel drivers installed."
+            ;;
+        4|*)
+            warn "Skipping GPU driver installation."
+            ;;
+    esac
+fi
 
-# --------------- 6. Icon theme (Catppuccin-SE) -------------------------------
+# --------------- 6. Icon theme (first install only) -------------------------
 
 ICON_DIR="${HOME}/.local/share/icons"
-if [[ -d "${ICON_DIR}/Catppuccin-SE" ]]; then
+if [[ -f "$MARKER_FILE" ]]; then
+    info "Update mode — skipping icon theme install."
+elif [[ -d "${ICON_DIR}/Catppuccin-SE" ]]; then
     success "Catppuccin-SE icon theme already installed."
 else
     info "Installing Catppuccin-SE icon theme…"
@@ -263,18 +270,31 @@ else
     warn "After logging into Hyprland, run:  detect-monitors"
 fi
 
-# --------------- 13. Set fish as default shell (optional) --------------------
+# --------------- 13. Set fish as default shell (first install only) ----------
 
-FISH_PATH="$(command -v fish 2>/dev/null || true)"
-if [[ -n "$FISH_PATH" ]] && [[ "$SHELL" != "$FISH_PATH" ]]; then
-    info "Setting fish as default shell…"
-    if ! grep -qxF "$FISH_PATH" /etc/shells; then
-        echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
-    fi
-    chsh -s "$FISH_PATH"
-    success "Default shell set to fish."
+if [[ -f "$MARKER_FILE" ]]; then
+    info "Update mode — skipping shell change."
 else
-    success "Fish is already the default shell (or not installed)."
+    FISH_PATH="$(command -v fish 2>/dev/null || true)"
+    if [[ -n "$FISH_PATH" ]] && [[ "$SHELL" != "$FISH_PATH" ]]; then
+        info "Setting fish as default shell…"
+        if ! grep -qxF "$FISH_PATH" /etc/shells; then
+            echo "$FISH_PATH" | sudo tee -a /etc/shells >/dev/null
+        fi
+        chsh -s "$FISH_PATH"
+        success "Default shell set to fish."
+    else
+        success "Fish is already the default shell (or not installed)."
+    fi
+fi
+
+# --------------- 14. Write marker (first install only) -----------------------
+
+if [[ ! -f "$MARKER_FILE" ]]; then
+    mkdir -p "$(dirname "$MARKER_FILE")"
+    echo "installed=$(date --iso-8601=seconds)" > "$MARKER_FILE"
+    success "First-install marker written to ${MARKER_FILE}."
+    info "Future runs of install.sh will skip GPU drivers, icon theme, and shell setup."
 fi
 
 # --------------- Done --------------------------------------------------------

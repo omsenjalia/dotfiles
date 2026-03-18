@@ -1,7 +1,7 @@
 @import "./colors.css";
 
 * {
-  font-family: "Maple Mono NF";
+  font-family: "Berkeley Mono";
   font-size: 15px;
   border-radius: 0;
   box-shadow: none;
@@ -9,124 +9,6 @@
 
 window#waybar {
   background: @background;
-  /* border: 2px solid @border; */
-}
-
-#custom-cachy:hover,
-#cpu:hover,
-#network:hover,
-#bluetooth:hover,
-#pulseaudio:hover,
-#pulseaudio.microphone:hover,
-#pulseaudio.sink-muted:hover,
-#custom-powermenu:hover {
-  opacity: 0.5;
-}
-
-#custom-cachy,
-#cpu,
-#clock,
-#mpris,
-#custom-menu,
-#tray,
-#privacy,
-#network,
-#bluetooth,
-#pulseaudio,
-#pulseaudio.microphone,
-#backlight,
-#battery,
-#custom-powermenu {
-  color: @foreground;
-  padding: 6px 0;
-}
-
-#workspaces button {
-  color: @foreground;
-  padding: 0;
-}
-#workspaces button.active {
-  color: @green;
-}
-
-#privacy {
-  margin: 4px;
-  color: @yellow;
-}
-
-#clock {
-  margin-top: 5px;
-  color: @blue;
-}
-
-#mpris {
-  color: @yellow;
-}
-
-#network.disabled {
-  color: @red;
-}
-#network.wifi {
-  color: @green;
-}
-#network.ethernet {
-  color: @yellow;
-}
-
-#bluetooth.disabled {
-  color: @red;
-}
-#bluetooth.connected {
-  color: @blue;
-}
-
-#pulseaudio.sink-muted:not(.microphone) {
-  color: @yellow;
-}
-#pulseaudio.microphone.source-muted {
-  color: @red;
-}
-
-#battery.plugged {
-  color: @blue;
-}
-#battery.charging {
-  color: @green;
-}
-#battery.critical {
-  color: @yellow;
-}
-
-tooltip {
-  background: @background;
-  border: 1px solid @foreground;
-}
-tooltip * {
-  color: @foreground;
-  margin: 2px;
-  background: @background;
-}
-
-#pulseaudio-slider,
-#backlight-slider {
-  min-height: 80px;
-}
-
-#pulseaudio-slider slider,
-#backlight-slider slider {
-  background: transparent;
-}
-
-#pulseaudio-slider trough,
-#backlight-slider trough {
-  min-width: 8px;
-}
-
-#pulseaudio-slider highlight {
-  background: @blue;
-}
-#backlight-slider highlight {
-  background: @yellow;
 }
 
 /* General Settings */
@@ -166,7 +48,15 @@ tooltip * {
 #custom-weather.showyIcyDay,
 #custom-weather.snowyIcyNight,
 #custom-weather.default {
-  padding: 5 0 5 0;
+  padding: 5px 0;
+}
+
+#workspaces button {
+  color: @foreground;
+  padding: 0;
+}
+#workspaces button.active {
+  color: @green;
 }
 
 #custom-notifications {
@@ -232,4 +122,56 @@ tooltip * {
 
 #submap {
   color: @peach;
+}
+
+#mpris {
+  color: @yellow;
+}
+
+#privacy {
+  margin: 4px;
+  color: @yellow;
+}
+
+tooltip {
+  background: @background;
+  border: 1px solid @foreground;
+}
+tooltip * {
+  color: @foreground;
+  margin: 2px;
+  background: @background;
+}
+
+#pulseaudio-slider,
+#backlight-slider {
+  min-height: 80px;
+}
+
+#pulseaudio-slider slider,
+#backlight-slider slider {
+  background: transparent;
+}
+
+#pulseaudio-slider trough,
+#backlight-slider trough {
+  min-width: 8px;
+}
+
+#pulseaudio-slider highlight {
+  background: @blue;
+}
+#backlight-slider highlight {
+  background: @yellow;
+}
+
+#custom-arch:hover,
+#cpu:hover,
+#network:hover,
+#bluetooth:hover,
+#pulseaudio:hover,
+#pulseaudio.microphone:hover,
+#pulseaudio.sink-muted:hover,
+#custom-powermenu:hover {
+  opacity: 0.5;
 }

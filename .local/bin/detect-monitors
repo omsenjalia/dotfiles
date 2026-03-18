@@ -3,7 +3,7 @@
 # detect-monitors — Dynamic Hyprland monitor configuration
 # =============================================================================
 # Detects connected monitors and writes:
-#   ~/.config/hypr/configs/monitors_var.conf
+#   ~/.config/hypr/conf/monitors_var.conf
 #
 # Can run inside Hyprland (uses hyprctl) or outside (uses /sys/class/drm).
 # Safe to re-run — overwrites the config file each time.
@@ -11,7 +11,7 @@
 
 set -euo pipefail
 
-CONFIG_DIR="${HOME}/.config/hypr/configs"
+CONFIG_DIR="${HOME}/.config/hypr/conf"
 OUT_FILE="${CONFIG_DIR}/monitors_var.conf"
 
 info()    { echo -e "\033[0;36m[detect-monitors]\033[0m $*"; }

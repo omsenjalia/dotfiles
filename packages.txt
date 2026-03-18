@@ -10,7 +10,7 @@ hypridle
 hyprpicker
 swww
 xdg-desktop-portal-hyprland
-waybar
+quickshell
 wttrbar
 waybar-updates
 vicinae-bin

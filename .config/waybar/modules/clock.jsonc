@@ -13,7 +13,6 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down",
     },
-    "on-click-middle": "thunderbird -calendar && hyprctl dispatch workspace 23",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "year",
@@ -56,7 +55,6 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down",
     },
-    "on-click-middle": "thunderbird -calendar && hyprctl dispatch workspace 23",
   },
   "clock#cl3": {
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -82,6 +80,5 @@
       "on-scroll-up": "shift_up",
       "on-scroll-down": "shift_down",
     },
-    "on-click-middle": "thunderbird -calendar && hyprctl dispatch workspace 23",
   },
 }

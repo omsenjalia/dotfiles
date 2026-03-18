@@ -23,7 +23,7 @@ import qs.modules.ii.verticalBar
 import qs.modules.ii.wallpaperSelector
 
 Scope {
-    PanelLoader { extraCondition: false; component: Bar {} }
+    PanelLoader { extraCondition: !Config.options.bar.vertical; component: Bar {} }
     PanelLoader { component: Background {} }
     PanelLoader { component: Cheatsheet {} }
     PanelLoader { extraCondition: Config.options.dock.enable; component: Dock {} }

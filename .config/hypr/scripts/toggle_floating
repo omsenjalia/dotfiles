@@ -1,7 +1,10 @@
 #!/bin/bash
 
 floating=$(hyprctl activewindow -j | jq '.floating')
-window=$(hyprctl activewindow -j | jq '.initialClass' | tr -d "\"")
+window=$(hyprctl activewindow -j | jq -r '.initialClass')
+
+default_width="${1:-70%}"
+default_height="${2:-70%}"
 
 function toggle() {
   width=$1
@@ -27,5 +30,6 @@ function handle() {
 
 case $window in
 kitty) handle "50%" "55%" ;;
-*) handle "70%" "70%" ;;
+*) handle "$default_width" "$default_height" ;;
 esac
+
